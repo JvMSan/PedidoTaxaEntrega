@@ -20,12 +20,13 @@ public class PedidoService {
         return repository.salvarPedido(pedido);
     }
 
-    public Pedido buscarPedidoPorClienteId(Integer id) {
+    public Pedido buscarPedidoPorClienteId(int id) {
         return repository.getBancoDeDados().stream()
-                .filter(pedido -> pedido.getCliente().getId().equalsIgnoreCase(id))
+                .filter(pedido -> pedido.getCliente().getId() == id) // Comparação direta com o int
                 .findFirst()
                 .orElse(null);
     }
+
 
     public List<Pedido> getPedidos() { return repository.getBancoDeDados(); }
 }
