@@ -2,17 +2,19 @@
 
 Esta é uma API RESTful desenvolvida em Spring Boot para cadastro de clientes, criação e processamento de pedidos, e aplicação de descontos conforme regras de negócio definidas.
 
+## DockerHub
+### ``https://hub.docker.com/repository/docker/lpcaio/discount-calculator-api/general ``
 ## Requisitos
 
 - **Java 17**
 - **Maven**
 - **Docker** (opcional, para executar via container)
+- **Postman**
 
 ## Dependências
 
 - Spring Boot Web
 - Spring Data JPA
-- H2 Database
 
 ## Estrutura do Projeto
 
@@ -22,7 +24,7 @@ A entidade **Cliente** representa os clientes cadastrados no sistema.
 
 | Campo       | Tipo   | Descrição                                      |
 |-------------|--------|------------------------------------------------|
-| `id`        | Long   | Identificador único do cliente                 |
+| `id`        | int    | Identificador único do cliente                 |
 | `nome`      | String | Nome do cliente                                |
 | `tipo`      | String | Tipo do cliente (comum, VIP, etc.)             |
 | `fidelidade`| Double | Percentual de fidelidade                       |
@@ -36,7 +38,7 @@ A entidade **Item** representa os itens contidos em um pedido.
 
 | Campo         | Tipo   | Descrição                                      |
 |---------------|--------|------------------------------------------------|
-| `id`          | Long   | Identificador único do item                    |
+| `id`          | int    | Identificador único do item                    |
 | `nome`        | String | Nome do item                                   |
 | `quantidade`  | Int    | Quantidade de itens                            |
 | `valorUnitario`| Double | Valor unitário do item                         |
@@ -46,13 +48,13 @@ A entidade **Item** representa os itens contidos em um pedido.
 
 A entidade **Pedido** representa um pedido realizado por um cliente.
 
-| Campo        | Tipo   | Descrição                                      |
-|--------------|--------|------------------------------------------------|
-| `id`         | Long   | Identificador único do pedido                  |
-| `data`       | Date   | Data do pedido                                 |
-| `taxaEntrega`| Double | Valor da taxa de entrega (padrão 10.0)         |
-| `cliente`    | Cliente| Cliente que realizou o pedido                  |
-| `itens`      | List   | Lista de itens incluídos no pedido             |
+| Campo        | Tipo    | Descrição                                      |
+|--------------|---------|------------------------------------------------|
+| `id`         | int     | Identificador único do pedido                  |
+| `data`       | Date    | Data do pedido                                 |
+| `taxaEntrega`| Double  | Valor da taxa de entrega (padrão 10.0)         |
+| `cliente`    | Cliente | Cliente que realizou o pedido                  |
+| `itens`      | List    | Lista de itens incluídos no pedido             |
 
 ## Endpoints da API
 
@@ -171,7 +173,7 @@ Aplica as regras de desconto ao pedido. O pedido pode ser beneficiado por difere
 
 #### Exemplo de Requisição:
 ```bash
-POST /pedidos/0/processar-descontos
+POST /pedidos/1/processar-descontos
 ```
 
 #### Exemplos de Resposta:
