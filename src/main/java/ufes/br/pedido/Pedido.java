@@ -11,6 +11,7 @@ import java.util.List;
 public class Pedido {
 
     private LocalDate data;
+    private int pedidoID;
     private Cliente cliente;
     private final double taxaEntrega = 10.00;
     private List<Item> itens;
@@ -33,6 +34,10 @@ public class Pedido {
             valorTotal += item.getValorTotal();
         }
         return valorTotal;
+    }
+
+    public void setPedidoID(int pedidoID) {
+        this.pedidoID = pedidoID;
     }
 
     public Cliente getCliente() {

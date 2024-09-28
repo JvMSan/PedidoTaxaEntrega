@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public class PedidoService {
-
+    private int ultimoId = 0;
     private final RepositorioPedido repository;
 
     public PedidoService(){
@@ -17,6 +17,7 @@ public class PedidoService {
     }
 
     public Pedido cadastrarPedido(Pedido pedido) {
+        pedido.setPedidoID(gerarNovoId());
         return repository.salvarPedido(pedido);
     }
 
@@ -27,6 +28,9 @@ public class PedidoService {
                 .orElse(null);
     }
 
+    private int gerarNovoId() {
+        return ultimoId++;
+    }
 
     public List<Pedido> getPedidos() { return repository.getBancoDeDados(); }
 }
