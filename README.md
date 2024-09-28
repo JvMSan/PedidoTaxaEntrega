@@ -132,7 +132,7 @@ Cria um novo pedido.
 {
   "cliente": {
     "id": 0,
-    "nome": "João ds Silva",
+    "nome": "Ricardo Almeida",
     "tipo": "Bronze",
     "fidelidade": 25.1,
     "logradouro": "Rua das Orquídeas, 876",
@@ -171,7 +171,7 @@ Aplica as regras de desconto ao pedido. O pedido pode ser beneficiado por difere
 
 #### Exemplo de Requisição:
 ```bash
-POST /pedidos/1/processar-descontos
+POST /pedidos/0/processar-descontos
 ```
 
 #### Exemplos de Resposta:
