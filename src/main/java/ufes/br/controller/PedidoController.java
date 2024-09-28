@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ufes.br.pedido.CalculadoraDescontoService;
 import ufes.br.pedido.Pedido;
+import ufes.br.repository.RepositorioPedido;
 import ufes.br.service.PedidoService;
 
 @RestController
@@ -22,13 +23,13 @@ public class PedidoController {
     }
     @GetMapping("/{pedidoID}")
     public ResponseEntity<Pedido> getDescontos(@PathVariable Integer pedidoID) {
-        Pedido pedidoEncontrado /* = busca no repository aq Repository.getInstance().buscar(pedidoID);*/;
+        Pedido pedidoEncontrado = RepositorioPedido.getInstance().buscarCliente(pedidoID);
         return new ResponseEntity<>(pedidoEncontrado, HttpStatus.OK);
     }
 
     @PostMapping("/{pedidoID}/processar-descontos")
     public ResponseEntity<Pedido> processarDescontos(@PathVariable Integer pedidoID) {
-        Pedido pedidoEncontrado /* = busca no repository aq Repository.getInstance().buscar(pedidoID);*/;
+        Pedido pedidoEncontrado  =  RepositorioPedido.getInstance().buscarCliente(pedidoID);
         CalculadoraDescontoService calculadoraDescontoService = new CalculadoraDescontoService();
         calculadoraDescontoService.processar(pedidoEncontrado);
         return new ResponseEntity<>(HttpStatus.OK);

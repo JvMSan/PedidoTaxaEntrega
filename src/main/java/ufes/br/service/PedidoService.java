@@ -2,27 +2,30 @@ package ufes.br.service;
 
 import org.springframework.stereotype.Service;
 import ufes.br.pedido.Pedido;
+import ufes.br.repository.RepositorioPedido;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class PedidoService {
 
-    private List<Pedido> pedidos = new ArrayList<>();
+    private final RepositorioPedido repository;
 
-    public Pedido cadastrarPedido(Pedido pedido) {
-        pedidos.add(pedido);  // Adiciona o pedido diretamente
-        return pedido;
+    public PedidoService(){
+        this.repository = RepositorioPedido.getInstance();
     }
 
-    public Pedido buscarPedidoPorCliente(String nomeCliente) {
-        return pedidos.stream()
-                .filter(pedido -> pedido.getCliente().getNome().equalsIgnoreCase(nomeCliente))
+    public Pedido cadastrarPedido(Pedido pedido) {
+        return repository.salvarPedido(pedido);
+    }
+
+    public Pedido buscarPedidoPorClienteId(Integer id) {
+        return repository.getBancoDeDados().stream()
+                .filter(pedido -> pedido.getCliente().getId().equalsIgnoreCase(id))
                 .findFirst()
                 .orElse(null);
     }
 
-    public List<Pedido> getPedidos() {
-        return pedidos;
-    }
+    public List<Pedido> getPedidos() { return repository.getBancoDeDados(); }
 }

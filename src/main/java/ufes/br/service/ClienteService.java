@@ -2,6 +2,7 @@ package ufes.br.service;
 
 import org.springframework.stereotype.Service;
 import ufes.br.pedido.Cliente;
+import ufes.br.repository.RepositorioCliente;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,21 +10,20 @@ import java.util.List;
 @Service
 public class ClienteService {
 
-    private List<Cliente> clientes = new ArrayList<>();
+    private final RepositorioCliente repository;
+
+    public ClienteService() {
+        this.repository = RepositorioCliente.getInstance();
+    }
 
     public Cliente cadastrarCliente(Cliente cliente) {
-        clientes.add(cliente);
+        repository.salvarCliente(cliente);
         return cliente;
     }
     
-    public Cliente buscarClientePorNome(String nome) {
-        return clientes.stream()
-                .filter(cliente -> cliente.getNome().equalsIgnoreCase(nome))
-                .findFirst()
-                .orElse(null);
-    }
+    public Cliente buscarCliente(Integer id) { return repository.buscarCliente(id); }
 
     public List<Cliente> getClientes() {
-        return clientes;
+        return repository.getBancoDeDados();
     }
 }
