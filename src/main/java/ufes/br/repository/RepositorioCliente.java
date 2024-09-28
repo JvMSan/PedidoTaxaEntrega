@@ -24,7 +24,7 @@ public class RepositorioCliente {
     public ArrayList<Cliente> getBancoDeDados() {
         return database;
     }
-    public Cliente buscarCliente(Integer id) {
+    public Cliente buscarCliente(int id) {
         return database.get(id);
     }
 }
