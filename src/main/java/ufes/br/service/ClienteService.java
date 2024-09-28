@@ -23,7 +23,7 @@ public class ClienteService {
         return cliente;
     }
     
-    public Cliente buscarCliente(Integer id) { return repository.buscarCliente(id); }
+    public Cliente buscarCliente(int id) { return repository.buscarCliente(id); }
 
     private int gerarNovoId() {
         return ultimoId++; // incrementa o ID a cada novo cliente

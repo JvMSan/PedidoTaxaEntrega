@@ -25,7 +25,7 @@ public class RepositorioPedido {
     public ArrayList<Pedido> getBancoDeDados() {
         return database;
     }
-    public Pedido buscarCliente(Integer id) {
+    public Pedido buscarCliente(int id) {
         return database.get(id);
     }
 }

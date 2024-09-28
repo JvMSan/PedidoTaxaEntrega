@@ -22,6 +22,12 @@ public class ClienteController {
         return new ResponseEntity<>(novoCliente, HttpStatus.CREATED);
     }
 
+    @GetMapping("/{clienteID}")
+    public ResponseEntity<Cliente> getCliente(@PathVariable Integer clienteID) {
+        Cliente cliente = clienteService.buscarCliente(clienteID);
+        return new ResponseEntity<>(cliente, HttpStatus.OK);
+    }
+
     @GetMapping
     public  ResponseEntity<List<Cliente>> listarClientes() {
         return new ResponseEntity<>(clienteService.getClientes(), HttpStatus.OK); //ver com getBancoDeDados
