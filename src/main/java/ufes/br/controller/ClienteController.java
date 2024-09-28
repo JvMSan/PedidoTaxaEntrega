@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import ufes.br.pedido.Cliente;
 import ufes.br.service.ClienteService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
@@ -16,7 +18,13 @@ public class ClienteController {
 
     @PostMapping
     public ResponseEntity<Cliente> cadastrarCliente(@RequestBody Cliente cliente) {
+        //cliente.setID ()repository.lenght pra add novo cliente com id correto
         Cliente novoCliente = clienteService.cadastrarCliente(cliente);
         return new ResponseEntity<>(novoCliente, HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public  ResponseEntity<List<Cliente>> listarClientes() {
+        return new ResponseEntity<>(clienteService.getClientes(), HttpStatus.OK); //ver com getBancoDeDados
     }
 }

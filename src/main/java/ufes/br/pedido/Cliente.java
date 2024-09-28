@@ -2,6 +2,7 @@ package ufes.br.pedido;
 
 public class Cliente {
 
+    private int id;  // Adicionando ID
     private String nome;
     private String tipo;
     private double fidelidade;
@@ -9,15 +10,24 @@ public class Cliente {
     private String bairro;
     private String cidade;
 
-    public Cliente(){}
+    public Cliente() {}
 
-    public Cliente(String nome, String tipo, double fidelidade, String logradouro, String bairro, String cidade) {
+    public Cliente(int id, String nome, String tipo, double fidelidade, String logradouro, String bairro, String cidade) {
+        this.id = id;
         this.nome = nome;
         this.tipo = tipo;
         this.fidelidade = fidelidade;
         this.logradouro = logradouro;
         this.bairro = bairro;
         this.cidade = cidade;
+    }
+
+    public int getId() {  // Getter para ID
+        return id;
+    }
+
+    public void setId(int id) {  // Setter para ID
+        this.id = id;
     }
 
     public String getNome() {
@@ -51,7 +61,8 @@ public class Cliente {
     @Override
     public String toString() {
         return "Cliente{"
-                + "nome='" + nome + '\''
+                + "id=" + id  // Exibindo o ID
+                + ", nome='" + nome + '\''
                 + ", tipo='" + tipo + '\''
                 + ", fidelidade=" + fidelidade
                 + ", logradouro='" + logradouro + '\''
