@@ -1,4 +1,5 @@
 FROM openjdk:17-jdk-alpine
-VOLUME /tmp
-COPY target/desconto-api-0.0.1-SNAPSHOT.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+RUN mkdir /app
+WORKDIR /app
+COPY target/*.jar /app/app.jar
+CMD ["java","-jar","/app/app.jar"]
