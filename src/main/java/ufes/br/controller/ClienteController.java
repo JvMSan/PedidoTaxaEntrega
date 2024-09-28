@@ -18,7 +18,6 @@ public class ClienteController {
 
     @PostMapping
     public ResponseEntity<Cliente> cadastrarCliente(@RequestBody Cliente cliente) {
-        //cliente.setID ()repository.lenght pra add novo cliente com id correto
         Cliente novoCliente = clienteService.cadastrarCliente(cliente);
         return new ResponseEntity<>(novoCliente, HttpStatus.CREATED);
     }
