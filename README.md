@@ -66,25 +66,25 @@ Cria um novo cliente.
 
 ```json
 {
-    "nome": "João da Silva",
-    "tipo": "VIP",
-    "fidelidade": 0.15,
-    "logradouro": "Rua A",
-    "bairro": "Centro",
-    "cidade": "São Paulo"
+  "nome": "Ricardo Almeida",
+  "tipo": "Bronze", // Prata ou Ouro
+  "fidelidade": 25.1,
+  "logradouro": "Rua das Orquídeas, 876",
+  "bairro": "Centro",  // Bela Vista ou Cidade Maravilhosa
+  "cidade": "Recife"
 }
 ```
 #### Exemplo de Resposta:
 
 ```json
 {
-    "id": 1,
-    "nome": "João da Silva",
-    "tipo": "VIP",
-    "fidelidade": 0.15,
-    "logradouro": "Rua A",
-    "bairro": "Centro",
-    "cidade": "São Paulo"
+  "id": 0,
+  "nome": "Ricardo Almeida",
+  "tipo": "Bronze",
+  "fidelidade": 25.1,
+  "logradouro": "Rua das Orquídeas, 876",
+  "bairro": "Centro",
+  "cidade": "Recife"
 }
 ```
 ### 2. Criação de Pedido
@@ -95,24 +95,34 @@ Cria um novo pedido.
 #### Exemplo de Requisição:
 ```json
 {
-    "data": "2024-09-28",
-    "cliente": {
-        "id": 1
+  "clienteId": 0,
+  "data": "2024-09-28",
+  "itens": [
+    {
+      "nome": "Pizza Margherita",
+      "quantidade": 2,
+      "valorUnitario": 35.0,
+      "tipo": "Alimentação"
     },
-    "itens": [
-        {
-            "nome": "Produto A",
-            "quantidade": 2,
-            "valorUnitario": 50.0,
-            "tipo": "produto"
-        },
-        {
-            "nome": "Serviço B",
-            "quantidade": 1,
-            "valorUnitario": 100.0,
-            "tipo": "serviço"
-        }
-    ]
+    {
+      "nome": "Refrigerante",
+      "quantidade": 3,
+      "valorUnitario": 8.5,
+      "tipo": "Alimentação"
+    },
+    {
+      "nome": "Livro de Programação",
+      "quantidade": 1,
+      "valorUnitario": 120.0,
+      "tipo": "Educação"
+    },
+    {
+      "nome": "Ingressos para Cinema",
+      "quantidade": 2,
+      "valorUnitario": 25.0,
+      "tipo": "Lazer"
+    }
+  ]
 }
 
 ```
@@ -120,30 +130,37 @@ Cria um novo pedido.
 #### Exemplo de Resposta:
 ```json
 {
-  "id": 1,
-  "data": "2024-09-28",
-  "taxaEntrega": 10.0,
   "cliente": {
-    "id": 1,
-    "nome": "João da Silva",
-    "tipo": "VIP"
+    "id": 0,
+    "nome": "João ds Silva",
+    "tipo": "Bronze",
+    "fidelidade": 25.1,
+    "logradouro": "Rua das Orquídeas, 876",
+    "bairro": "Centro",
+    "cidade": "Recife"
   },
+  "taxaEntrega": 10.0,
   "itens": [
     {
-      "id": 1,
-      "nome": "Produto A",
-      "quantidade": 2,
-      "valorUnitario": 50.0,
-      "tipo": "produto"
+      "tipo": "Alimentação",
+      "valorTotal": 70.0
     },
     {
-      "id": 2,
-      "nome": "Serviço B",
-      "quantidade": 1,
-      "valorUnitario": 100.0,
-      "tipo": "serviço"
+      "tipo": "Alimentação",
+      "valorTotal": 25.5
+    },
+    {
+      "tipo": "Educação",
+      "valorTotal": 120.0
+    },
+    {
+      "tipo": "Lazer",
+      "valorTotal": 50.0
     }
-  ]
+  ],
+  "cuponsDescontoEntrega": [],
+  "descontoConcedido": 0.0,
+  "valorPedido": 265.5
 }
 ```
 
